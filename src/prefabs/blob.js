@@ -6,7 +6,8 @@ class blob extends Phaser.GameObjects.Sprite {
 
         // add object to existing scene
         scene.add.existing(this); //add to existing, displayList, updateList
-        this.isFlipped = false;    //track rocket's firing status
+        this.isJumping=false;
+        //this.isFlipped = false;    //track rocket's firing status
         this.moveSpeed = 2;       //pixels per frame
     }
 
@@ -21,23 +22,41 @@ class blob extends Phaser.GameObjects.Sprite {
 
 
 
-        // jump button
+        // up / down button 
 
 
-        if (Phaser.Input.Keyboard.JustDown(keySPACE) ) {
-            this.isFlipped = true;
-
-            this.sfxBlob.play();  // play sfx
+        if (Phaser.Input.Keyboard.JustDown(keyUP)||Phaser.Input.Keyboard.JustDown(keyDOWN)) {
+            this.isJumping = true;
         }
+
+        if ( this.isJumping == true && this.y >= borderUISize * 3 + borderPadding) {
+            //this.sfxBlob.play();  // play sfx
+            this.y -= this.moveSpeed * 4;
+            //this.isFlipped == true;
+            
+            this.isJumping == false;
+        }
+         else if (this.isJumping == true && this.y <= game.config.height - borderUISize - 2* borderPadding)
+        {
+            //this.sfxBlob.play();  // play sfx
+            this.y += this.moveSpeed * 4;
+            //this.isFlipped == false;
+            
+            this.isJumping == false;
+        }
+
+        // if (this.y <= borderUISize * 3 + borderPadding ) {
+        //     this.reset();
+        // }
 
         //if flipped flip the blob
-        if (this.isFlipped) {
-            //flip the blob upside down
+        // if (this.isFlipped) {
+        //     //flip the blob upside down
+        //     this.setScale(1,-1);
+        // }
 
-        }
 
-       
     }
 
-    
+
 }

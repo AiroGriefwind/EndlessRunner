@@ -48,15 +48,18 @@ class Play extends Phaser.Scene {
         //  this.blob = new blob(this, game.config.width / 2,
         //      game.config.height - borderUISize - borderPadding, 'blob').setOrigin(0.5, 0);
 
-        this.blob = new blob(this, game.config.width / 2,
-        game.config.height - borderUISize - 2* borderPadding, 'blob').setOrigin(0.5, 0);
+         this.blob = new blob(this, game.config.width / 2,
+         game.config.height - borderUISize - 2* borderPadding, 'blob').setOrigin(0.5, 0);
+        
+        
         // add ground
 
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         
 
         // // add spaceships (x3)

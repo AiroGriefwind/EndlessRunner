@@ -2,13 +2,17 @@ let config = {
     type: Phaser.CANVAS,
     width: 640,
     height: 480,
-    scene: [ Menu, Play ]
+    scene: [ Menu, Play ],
+    physics:{
+      default:'arcade',
+      arcade:{debug:true}
+    }
   }
 
 let game = new Phaser.Game(config);
 
 // reserve keyboard vars
-let keySPACE, keyLEFT, keyRIGHT;
+let keySPACE, keyLEFT, keyRIGHT,keyUP,keyDOWN;
 
 //set UI sizes
 let borderUISize = game.config.height / 15;
