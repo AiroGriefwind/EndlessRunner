@@ -66,6 +66,9 @@ class Play extends Phaser.Scene {
          this.barrier01 = new barrier(this, game.config.width + borderUISize * 6, borderUISize * 4, 'barrier', 0, 30).setOrigin(0, 0);
          this.barrier02 = new barrier(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'barrier', 0, 20).setOrigin(0, 0);
          this.barrier03 = new barrier(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'barrier', 0, 10).setOrigin(0, 0);
+         this.barrier04 = new barrier(this, game.config.width + borderUISize * 9, borderUISize * 4, 'barrier', 0, 40).setOrigin(0, 0);
+         this.barrier05 = new barrier(this, game.config.width + borderUISize * 12, borderUISize * 4, 'barrier', 0, 50).setOrigin(0, 0);
+         this.barrier06 = new barrier(this, game.config.width + borderUISize * 15, borderUISize * 4, 'barrier', 0, 60).setOrigin(0, 0);
 
         // add spaceship2 
         //
@@ -165,6 +168,9 @@ class Play extends Phaser.Scene {
             this.barrier01.update();           // update spaceships (x4)
             this.barrier02.update();
             this.barrier03.update();
+            this.barrier04.update();
+            this.barrier05.update();
+            this.barrier06.update();
             //this.ship2.update();
          }
 

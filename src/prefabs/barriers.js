@@ -1,39 +1,49 @@
 // Rocket prefab
 class barrier extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame, pointValue) {
-      super(scene, x, y, texture, frame, pointValue);
-  
-      
-      scene.add.existing(this); //add to existing scene
-      this.points = pointValue; //store pointValue
-      this.moveSpeed = 3;       //pixels per frame
-      this.direction = -1; // randomly set direction to -1 or 1
+        super(scene, x, y, texture, frame, pointValue);
 
-      
+
+        scene.add.existing(this); //add to existing scene
+        this.points = pointValue; //store pointValue
+        this.moveSpeed = 3;       //pixels per frame
+        this.direction = -1; // randomly set direction to -1 or 1
+
+
     }
 
-    update(){
+    update() {
         //move barrier left or right based on direction
-        this.x += this.moveSpeed*this.direction;
+        this.x += this.moveSpeed * this.direction;
 
         // //wrap around from left edge to right edge
         // if (this.x <= 0 - this.width){
         //     this.reset();
         // }
-        
+
         // wrap around from right edge to left edge or vice versa
         if (this.direction === -1 && this.x <= 0 - this.width) {
-            this.reset();
-        } 
-    }
-    
-    //position reset
-    reset() {
-        
 
-        // reset position based on direction
-        if (this.direction === -1) {
-            this.x = game.config.width + this.width;
+            this.reset();
         }
     }
-  }
+
+    //position reset
+    reset() {
+
+
+        // reset position based on direction
+
+        this.x = game.config.width + this.width;
+        this.y += 20 * Phaser.Math.RND.sign();
+        if (this.y > game.config.height - borderUISize - 2* borderPadding)
+        {
+            this.y = game.config.height - borderUISize - 2* borderPadding;
+        }
+        else if (this.y < borderUISize * 3 + borderPadding)
+        {
+            this.y = borderUISize * 3 + borderPadding;
+        }
+
+    }
+}
