@@ -25,24 +25,24 @@ class blob extends Phaser.GameObjects.Sprite {
         // up / down button 
 
 
-        if (Phaser.Input.Keyboard.JustDown(keyUP)||Phaser.Input.Keyboard.JustDown(keyDOWN)) {
-            this.isJumping = true;
-        }
+        // if (Phaser.Input.Keyboard.KeyCodes.UP||Phaser.Input.Keyboard.KeyCodes.DOWN) {
+        //     this.isJumping = true;
+        // }
 
-        if ( this.isJumping == true && this.y >= borderUISize * 3 + borderPadding) {
+        if ( keyUP.isDown && this.y >= borderUISize * 3 + borderPadding) {
             //this.sfxBlob.play();  // play sfx
             this.y -= this.moveSpeed * 4;
             //this.isFlipped == true;
             
-            this.isJumping == false;
+            
         }
-         else if (this.isJumping == true && this.y <= game.config.height - borderUISize - 2* borderPadding)
+         else if (keyDOWN.isDown && this.y <= game.config.height - borderUISize - 2* borderPadding)
         {
             //this.sfxBlob.play();  // play sfx
             this.y += this.moveSpeed * 4;
             //this.isFlipped == false;
             
-            this.isJumping == false;
+            
         }
 
         // if (this.y <= borderUISize * 3 + borderPadding ) {
