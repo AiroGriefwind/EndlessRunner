@@ -45,16 +45,18 @@ class Play extends Phaser.Scene {
             0xFFFFFF).setOrigin(0, 0);
 
         //  add blob (p1)
-         this.blob = new blob(this, game.config.width / 2,
-             game.config.height - borderUISize - borderPadding, 'blob').setOrigin(0.5, 0);
+        //  this.blob = new blob(this, game.config.width / 2,
+        //      game.config.height - borderUISize - borderPadding, 'blob').setOrigin(0.5, 0);
 
+        this.blob = new blob(this, game.config.width / 2,
+        game.config.height - borderUISize - 2* borderPadding, 'blob').setOrigin(0.5, 0);
         // add ground
 
 
         // define keys
-        //keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
-        //keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-       // keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         
 
         // // add spaceships (x3)
@@ -155,13 +157,13 @@ class Play extends Phaser.Scene {
         }
 
         this.background.tilePositionX -= 4;
-        // if (!this.gameOver) {
-        //     this.p1Rocket.update();         // update rocket sprite
+         if (!this.gameOver) {
+             this.blob.update();         // update rocket sprite
         //     this.ship01.update();           // update spaceships (x4)
         //     this.ship02.update();
         //     this.ship03.update();
         //     this.ship2.update();
-        // }
+         }
 
 
 
