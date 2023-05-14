@@ -2,7 +2,7 @@
 class blob extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
-        this.sfxBlob = scene.sound.add('sfx_Blob'); // add rocket sfx
+        //this.sfxBlob = scene.sound.add('sfx_Blob'); 
 
         // add object to existing scene
         scene.add.existing(this); //add to existing, displayList, updateList
@@ -33,7 +33,7 @@ class blob extends Phaser.GameObjects.Sprite {
         //if flipped flip the blob
         if (this.isFlipped) {
             //flip the blob upside down
-            
+
         }
 
        
