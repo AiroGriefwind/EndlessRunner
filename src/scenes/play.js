@@ -7,7 +7,7 @@ class Play extends Phaser.Scene {
         // load images/tile sprites
         this.load.image('blob', './assets/blob.png');
         this.load.image('ground', './assets/ground.png');
-        // this.load.image('spaceship2', './assets/spaceship2.png');
+        this.load.image('barrier', './assets/barrier.png');
         this.load.image('background', './assets/background.png');
         // this.load.image('particle', './assets/particle.png');
         //
@@ -62,10 +62,10 @@ class Play extends Phaser.Scene {
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         
 
-        // // add spaceships (x3)
-        // this.ship01 = new Spaceship(this, game.config.width + borderUISize * 6, borderUISize * 4, 'spaceship', 0, 30).setOrigin(0, 0);
-        // this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
-        // this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
+        // // add barrier (x3)
+         this.barrier01 = new barrier(this, game.config.width + borderUISize * 6, borderUISize * 4, 'barrier', 0, 30).setOrigin(0, 0);
+         this.barrier02 = new barrier(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'barrier', 0, 20).setOrigin(0, 0);
+         this.barrier03 = new barrier(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'barrier', 0, 10).setOrigin(0, 0);
 
         // add spaceship2 
         //
@@ -162,10 +162,10 @@ class Play extends Phaser.Scene {
         this.background.tilePositionX -= 4;
          if (!this.gameOver) {
              this.blob.update();         // update rocket sprite
-        //     this.ship01.update();           // update spaceships (x4)
-        //     this.ship02.update();
-        //     this.ship03.update();
-        //     this.ship2.update();
+            this.barrier01.update();           // update spaceships (x4)
+            this.barrier02.update();
+            this.barrier03.update();
+            //this.ship2.update();
          }
 
 
