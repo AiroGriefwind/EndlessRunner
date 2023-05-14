@@ -5,10 +5,10 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images/tile sprites
-        // this.load.image('rocket', './assets/rocket.png');
-        // this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('blob', './assets/blob.png');
+        this.load.image('ground', './assets/ground.png');
         // this.load.image('spaceship2', './assets/spaceship2.png');
-        // this.load.image('starfield', './assets/starfield.png');
+        this.load.image('background', './assets/background.png');
         // this.load.image('particle', './assets/particle.png');
         //
         // this.load.audio('bgm', './assets/eco-technology-145636.mp3');
@@ -28,7 +28,7 @@ class Play extends Phaser.Scene {
         
 
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
 
         //green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width,
@@ -44,9 +44,12 @@ class Play extends Phaser.Scene {
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height,
             0xFFFFFF).setOrigin(0, 0);
 
-        // // add rocket (p1)
-        // this.p1Rocket = new Rocket(this, game.config.width / 2,
-        //     game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
+        //  add blob (p1)
+         this.blob = new blob(this, game.config.width / 2,
+             game.config.height - borderUISize - borderPadding, 'blob').setOrigin(0.5, 0);
+
+        // add ground
+
 
         // define keys
         //keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -151,7 +154,7 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
 
-        this.starfield.tilePositionX -= 4;
+        this.background.tilePositionX -= 4;
         // if (!this.gameOver) {
         //     this.p1Rocket.update();         // update rocket sprite
         //     this.ship01.update();           // update spaceships (x4)
