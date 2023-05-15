@@ -38,16 +38,17 @@ class Menu extends Phaser.Scene {
         menuConfig.color = '#843605';
 
         this.add.text(game.config.width / 2, game.config.height / 2 + borderUISize +
-            borderPadding * 2, 'Press SPACE to Start', menuConfig).setOrigin(0.5);
+            borderPadding * 2, 'Press UP to Start', menuConfig).setOrigin(0.5);
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+        if (Phaser.Input.Keyboard.JustDown(keyUP)) {
             // easy mode
             // game.settings = {
             //     spaceshipSpeed: 3,
