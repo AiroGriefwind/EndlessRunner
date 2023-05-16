@@ -6,7 +6,7 @@ class blob extends Phaser.GameObjects.Sprite {
 
         // add object to existing scene
         scene.add.existing(this); //add to existing, displayList, updateList
-        this.isJumping=false;
+        this.isDestroyed=false;
         //this.isFlipped = false;    //track rocket's firing status
         this.moveSpeed = 2;       //pixels per frame
     }

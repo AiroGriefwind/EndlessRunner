@@ -14,7 +14,7 @@ class Play extends Phaser.Scene {
         this.load.audio('bgm', './assets/eco-technology-145636.mp3');
         // // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png',
-        { frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9 });
+            { frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9 });
     }
 
     create() {
@@ -25,7 +25,7 @@ class Play extends Phaser.Scene {
             newBgm.play();
             newBgm.volume = 0.5;
         }
-        
+
 
         // place tile sprite
         this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
@@ -48,10 +48,10 @@ class Play extends Phaser.Scene {
         //  this.blob = new blob(this, game.config.width / 2,
         //      game.config.height - borderUISize - borderPadding, 'blob').setOrigin(0.5, 0);
 
-         this.blob = new blob(this, game.config.width / 2,
-         game.config.height - borderUISize - 2* borderPadding, 'blob').setOrigin(0.5, 0);
-        
-        
+        this.blob = new blob(this, game.config.width / 2,
+            game.config.height - borderUISize - 2 * borderPadding, 'blob').setOrigin(0.5, 0);
+
+
         // add ground
 
 
@@ -60,15 +60,15 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        
+
 
         // // add barrier (x3)
-         this.barrier01 = new barrier(this, game.config.width + borderUISize * 6, borderUISize * 4, 'barrier', 0, 30).setOrigin(0, 0);
-         this.barrier02 = new barrier(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'barrier', 0, 20).setOrigin(0, 0);
-         this.barrier03 = new barrier(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'barrier', 0, 10).setOrigin(0, 0);
-         this.barrier04 = new barrier(this, game.config.width + borderUISize * 9, borderUISize * 4, 'barrier', 0, 40).setOrigin(0, 0);
-         this.barrier05 = new barrier(this, game.config.width + borderUISize * 12, borderUISize * 4, 'barrier', 0, 50).setOrigin(0, 0);
-         this.barrier06 = new barrier(this, game.config.width + borderUISize * 15, borderUISize * 4, 'barrier', 0, 60).setOrigin(0, 0);
+        this.barrier01 = new barrier(this, game.config.width + borderUISize * 6, borderUISize * 4, 'barrier', 0, 30).setOrigin(0, 0);
+        this.barrier02 = new barrier(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'barrier', 0, 20).setOrigin(0, 0);
+        this.barrier03 = new barrier(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'barrier', 0, 10).setOrigin(0, 0);
+        this.barrier04 = new barrier(this, game.config.width + borderUISize * 9, borderUISize * 4, 'barrier', 0, 40).setOrigin(0, 0);
+        this.barrier05 = new barrier(this, game.config.width + borderUISize * 12, borderUISize * 4, 'barrier', 0, 50).setOrigin(0, 0);
+        this.barrier06 = new barrier(this, game.config.width + borderUISize * 15, borderUISize * 4, 'barrier', 0, 60).setOrigin(0, 0);
 
         // add spaceship2 
         //
@@ -151,38 +151,41 @@ class Play extends Phaser.Scene {
         // update timer text
         //this.timerText.setText('Time: ' + Math.ceil(this.clock.getRemainingSeconds()));
 
-        
-
-        this.background.tilePositionX -= 4;
-         if (!this.gameOver) {
-             this.blob.update();         // update rocket sprite
-            this.barrier01.update();           // update spaceships (x4)
-            this.barrier02.update();
-            this.barrier03.update();
-            this.barrier04.update();
-            this.barrier05.update();
-            this.barrier06.update();
-            //this.barrier2.update();
-         }
-
+        if (!this.blob.isDestroyed) {
+            this.background.tilePositionX -= 4;
+            if (!this.gameOver) {
+                this.blob.update();         // update rocket sprite
+                this.barrier01.update();           // update spaceships (x4)
+                this.barrier02.update();
+                this.barrier03.update();
+                this.barrier04.update();
+                this.barrier05.update();
+                this.barrier06.update();
+                //this.barrier2.update();
+            }
 
 
 
-        //
 
-        // if (this.p1Rocket.isFiring == true) { this.Fire.alpha = 1; }
+            //
+
+            // if (this.p1Rocket.isFiring == true) { this.Fire.alpha = 1; }
 
 
-        // check collisions
-        if (this.checkCollision(this.blob, this.barrier03)) {
-            
-            this.BlobExplode(this.barrier03);
-            //gameover
-            this.gameOver = true;
+            // check collisions
+            if (this.checkCollision(this.blob, this.barrier03)) {
 
+                this.gameOver = true;
+                this.BlobExplode(this.blob);
+                //gameover
+
+
+            }
         }
-        
-        
+
+
+
+
     }
 
     checkCollision(blob, barrier) {
@@ -203,7 +206,8 @@ class Play extends Phaser.Scene {
         //   }
 
 
-        // temporarily hide ship
+        //
+        this.blob.isDestroyed = true;
         blob.alpha = 0;
 
         //
@@ -229,7 +233,7 @@ class Play extends Phaser.Scene {
         // this.p1Score += ship.points;
         // if (this.HighScore < this.p1Score) { this.HighScore = this.p1Score; }
         // this.scoreLeft.text = this.p1Score + '\n' + "HS: " + this.HighScore;
-        
+
         //play explosion audio
         let explosionIndex = Phaser.Math.Between(1, 4);
         switch (explosionIndex) {
@@ -246,6 +250,8 @@ class Play extends Phaser.Scene {
                 this.sound.play('sfx_explosion4');
                 break;
         }
+
+        //blob.destroy();
 
         this.time.delayedCall(4000, () => { this.scene.start('gameOverScene'); });
     }
