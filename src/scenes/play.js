@@ -151,16 +151,7 @@ class Play extends Phaser.Scene {
         // update timer text
         //this.timerText.setText('Time: ' + Math.ceil(this.clock.getRemainingSeconds()));
 
-        // check key input for restart
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
-            window.localStorage.setItem('HS', this.HighScore)
-            this.scene.restart();
-        }
-
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-            window.localStorage.setItem('HS', this.HighScore)
-            this.scene.start("menuScene");
-        }
+        
 
         this.background.tilePositionX -= 4;
          if (!this.gameOver) {
@@ -171,7 +162,7 @@ class Play extends Phaser.Scene {
             this.barrier04.update();
             this.barrier05.update();
             this.barrier06.update();
-            //this.ship2.update();
+            //this.barrier2.update();
          }
 
 
@@ -182,42 +173,23 @@ class Play extends Phaser.Scene {
         // if (this.p1Rocket.isFiring == true) { this.Fire.alpha = 1; }
 
 
-        // // check collisions
-        // if (this.checkCollision(this.p1Rocket, this.ship03)) {
-        //     this.p1Rocket.reset();
-        //     this.shipExplode(this.ship03);
-        //     this.clock.delay += 1000;
-        //     this.Fire.alpha = 0;
+        // check collisions
+        if (this.checkCollision(this.blob, this.barrier03)) {
+            
+            this.BlobExplode(this.barrier03);
+            //gameover
+            this.gameOver = true;
 
-        // }
-        // if (this.checkCollision(this.p1Rocket, this.ship02)) {
-        //     this.p1Rocket.reset();
-        //     this.shipExplode(this.ship02);
-        //     this.clock.delay += 2000;
-        //     this.Fire.alpha = 0;
-
-        // }
-        // if (this.checkCollision(this.p1Rocket, this.ship01)) {
-        //     this.p1Rocket.reset();
-        //     this.shipExplode(this.ship01);
-        //     this.clock.delay += 3000;
-        //     this.Fire.alpha = 0;
-
-        // }
-        // if (this.checkCollision(this.p1Rocket, this.ship2)) {
-        //     this.p1Rocket.reset();
-        //     this.shipExplode(this.ship2);
-        //     this.clock.delay += 5000;
-        //     this.Fire.alpha = 0;
-
-        // }
+        }
+        
+        
     }
 
     checkCollision(blob, barrier) {
         // simple AABB checking
-        if (blob.x < barrier.x + ship.width &&
+        if (blob.x < barrier.x + barrier.width &&
             blob.x + blob.width > barrier.x &&
-            blob.y < barrier.y + ship.height &&
+            blob.y < barrier.y + barrier.height &&
             blob.height + blob.y > barrier.y) {
             return true;
         } else {
@@ -274,5 +246,7 @@ class Play extends Phaser.Scene {
                 this.sound.play('sfx_explosion4');
                 break;
         }
+
+        this.time.delayedCall(4000, () => { this.scene.start('gameOverScene'); });
     }
 }
