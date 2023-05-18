@@ -70,17 +70,6 @@ class Play extends Phaser.Scene {
         this.barrier05 = new barrier(this, game.config.width + borderUISize * 12, borderUISize * 4, 'barrier', 0, 50).setOrigin(0, 0);
         this.barrier06 = new barrier(this, game.config.width + borderUISize * 15, borderUISize * 4, 'barrier', 0, 60).setOrigin(0, 0);
 
-        // add spaceship2 
-        //
-        // let yMin = borderUISize * 4;
-        // let yMax = borderUISize * 6 + borderPadding * 4;
-        // let yRange = yMax - yMin;
-        // let yPosition = yMin + yRange * Math.random(); // get a random y position within the range
-
-        //this.ship2 = new Spaceship2(this, game.config.width + borderUISize * 6, Phaser.Math.Between(borderUISize * 4, borderUISize * 6 + borderPadding * 4), 'spaceship2', 0, 50).setOrigin(0, 0);
-
-
-
         // animation config
         this.anims.create({
             key: 'explode',
@@ -110,37 +99,11 @@ class Play extends Phaser.Scene {
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding * 2, this.p1Score + '\n' + "HS: " + this.HighScore, scoreConfig);
 
 
-
-        //
-        // let FireUI = {
-        //     fontFamily: 'Courier',
-        //     fontSize: '28px',
-        //     backgroundColor: '#F3B141',
-        //     color: '#843605',
-        //     align: 'right',
-        //     padding: {
-        //         top: 5,
-        //         bottom: 5,
-        //     },
-        //     fixedWidth: 0
-        // }
-        // this.Fire = this.add.text(game.config.width / 2, game.config.height / 4 - borderPadding - borderUISize, 'Fire', FireUI).setOrigin(0.5);
-        // this.Fire.alpha = 0;
-
         // GAME OVER flag
         this.gameOver = false;
 
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
-
-        // add timer text
-        //this.timerText = this.add.text(game.config.width - borderUISize - borderPadding, borderUISize + borderPadding * 2, 'Time: ' + game.settings.gameTimer / 1000, scoreConfig).setOrigin(1, 0);
-
-        // this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-        //     this.add.text(game.config.width / 2, game.config.height / 2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-        //     this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
-        //     this.gameOver = true;
-        // }, null, this);
 
 
     }
@@ -167,19 +130,33 @@ class Play extends Phaser.Scene {
 
 
 
-            //
-
-            // if (this.p1Rocket.isFiring == true) { this.Fire.alpha = 1; }
+            
 
 
             // check collisions
-            if (this.checkCollision(this.blob, this.barrier03)) {
-
+            if (this.checkCollision(this.blob, this.barrier01)) {
                 this.gameOver = true;
                 this.BlobExplode(this.blob);
-                //gameover
-
-
+            }
+            if (this.checkCollision(this.blob, this.barrier02)) {
+                this.gameOver = true;
+                this.BlobExplode(this.blob);
+            }
+            if (this.checkCollision(this.blob, this.barrier03)) {
+                this.gameOver = true;
+                this.BlobExplode(this.blob);
+            }
+            if (this.checkCollision(this.blob, this.barrier04)) {
+                this.gameOver = true;
+                this.BlobExplode(this.blob);
+            }
+            if (this.checkCollision(this.blob, this.barrier05)) {
+                this.gameOver = true;
+                this.BlobExplode(this.blob);
+            }
+            if (this.checkCollision(this.blob, this.barrier06)) {
+                this.gameOver = true;
+                this.BlobExplode(this.blob);
             }
         }
 

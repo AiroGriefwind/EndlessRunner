@@ -11,6 +11,12 @@ class GameOver extends Phaser.Scene {
 
     create() {
 
+        // define keys
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '20px',
@@ -64,20 +70,23 @@ class GameOver extends Phaser.Scene {
 
     update() {
         // wait for UP input to restart game
-    //     if (Phaser.Input.Keyboard.JustDown(cursors.up)) {
-    //         let textureManager = this.textures;
-    //         console.log(textureManager)
-    //         // take snapshot of the entire game viewport (same as title screen)
-    //         this.game.renderer.snapshot((snapshotImage) => {
-    //             console.log('took snapshot in GameOver')
-    //             if (textureManager.exists('titlesnapshot')) {
-    //                 textureManager.remove('titlesnapshot');
-    //             }
-    //             textureManager.addImage('titlesnapshot', snapshotImage);
-    //         });
+        if (Phaser.Input.Keyboard.JustDown(keyUP)) {
+            //         let textureManager = this.textures;
+            //         console.log(textureManager)
+            //         // take snapshot of the entire game viewport (same as title screen)
+            //         this.game.renderer.snapshot((snapshotImage) => {
+            //             console.log('took snapshot in GameOver')
+            //             if (textureManager.exists('titlesnapshot')) {
+            //                 textureManager.remove('titlesnapshot');
+            //             }
+            //             textureManager.addImage('titlesnapshot', snapshotImage);
+            //         });
 
-    //         // start next scene
-    //         this.scene.start('playScene');
-    //     }
-     }
+            //         // start next scene
+            //         this.scene.start('playScene');
+            this.scene.start('playScene');
+        }
+
+
+    }
 }
