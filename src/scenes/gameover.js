@@ -22,16 +22,16 @@ class GameOver extends Phaser.Scene {
             fontSize: '20px',
             backgroundColor: '#F3B141',
             color: '#843605',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 100
+            fixedWidth: 500
         }
 
         this.add.text(game.config.width / 2, game.config.height / 2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-        this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (up) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
 
         // // check for high score in local storage
         // // uncomment console.log statements if you need to debug local storage
@@ -86,6 +86,23 @@ class GameOver extends Phaser.Scene {
             //         this.scene.start('playScene');
             this.scene.start('playScene');
         }
+        if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+            //         let textureManager = this.textures;
+            //         console.log(textureManager)
+            //         // take snapshot of the entire game viewport (same as title screen)
+            //         this.game.renderer.snapshot((snapshotImage) => {
+            //             console.log('took snapshot in GameOver')
+            //             if (textureManager.exists('titlesnapshot')) {
+            //                 textureManager.remove('titlesnapshot');
+            //             }
+            //             textureManager.addImage('titlesnapshot', snapshotImage);
+            //         });
+
+            //         // start next scene
+            //         this.scene.start('playScene');
+            this.scene.start('menuScene');
+        }
+        
 
 
     }
